@@ -5,22 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Navigation Bar -->
 <header>
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Primary">
     <div class="logo">Sabeeha Mirza</div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#clients">Clients</a></li>
-      <li><a href= "#blog">Blog</a></li>
-      <li><a href="#contact">Contact</a></li>
+
+    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle menu">
+      ☰
+    </button>
+
+    <ul id="primary-navigation" class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#clients">Clients</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <div class="menu-toggle">☰</div>
   </nav>
 </header>
 
   <title>Sabeeha - Soft Skills & Spoken English Coach</title>
   <link rel="stylesheet" href="STYLE.CSS">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   
  
 
@@ -33,16 +39,155 @@
       Through personal and corporate life coaching, I help emerging leaders, teams, 
       and individuals get more out of their personal and professional lives.
     </p>
-    <a href="#contact" class="btn">Book a Coaching Session</a>
+    <button class="btn" id="hero-book-btn">Book a Coaching Session</button>
   </div>
-   <div class="hero-image">
+  <div class="hero-image">
     <img src="client images/HOME.jpeg" alt="Sabeeha Mirza Speaking">
   </div>
-
-  
 </section>
 
 
+
+<!-- Enhanced Booking Modal -->
+<div class="booking-modal" id="booking-modal">
+  <div class="modal-dialog">
+    <button class="modal-close-btn" id="close-booking-modal" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="modal-header">
+      <h2>Book Your Session</h2>
+      <p>Fill in your details and we'll get back to you within 24 hours</p>
+    </div>
+    
+    <form id="modal-booking-form" class="modal-form">
+      <!-- Name Field -->
+      <div class="form-field">
+        <label for="modal-name">Full Name *</label>
+        <input 
+          type="text" 
+          id="modal-name" 
+          name="name" 
+          placeholder="Enter your full name" 
+          required
+          minlength="3"
+          pattern="[A-Za-z\s]+"
+          title="Please enter only letters and spaces"
+        >
+        <span class="field-error"></span>
+      </div>
+      
+      <!-- Email Field -->
+      <div class="form-field">
+        <label for="modal-email">Email Address *</label>
+        <input 
+          type="email" 
+          id="modal-email" 
+          name="email" 
+          placeholder="your.email@example.com" 
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          title="Please enter a valid email address"
+        >
+        <span class="field-error"></span>
+      </div>
+      
+      <!-- Phone Field -->
+      <div class="form-field">
+        <label for="modal-phone">Phone Number *</label>
+        <div class="phone-input-wrapper">
+          <span class="country-code">+91</span>
+          <input 
+            type="tel" 
+            id="modal-phone" 
+            name="phone" 
+            placeholder="98765 43210" 
+            required
+            maxlength="10"
+            pattern="[0-9]{10}"
+            title="Please enter a 10-digit phone number"
+          >
+        </div>
+        <span class="field-error"></span>
+      </div>
+      
+      <!-- Service Selection -->
+      <div class="form-field">
+        <label for="modal-service">Select Service *</label>
+        <select id="modal-service" name="service" required>
+          <option value="">Choose a service...</option>
+          <option value="leadership-coaching">Leadership Coaching</option>
+          <option value="soft-skills">Soft Skills Training</option>
+          <option value="ielts">IELTS Coaching</option>
+          <option value="public-speaking">Public Speaking</option>
+          <option value="corporate">Corporate Training</option>
+          <option value="communication">Communication Skills</option>
+        </select>
+        <span class="field-error"></span>
+      </div>
+      
+      <!-- Date Selection -->
+      <div class="form-field">
+        <label for="modal-date">Preferred Date *</label>
+        <input 
+          type="date" 
+          id="modal-date" 
+          name="date" 
+          required
+          min=""
+        >
+        <span class="field-error"></span>
+      </div>
+      
+      <!-- Message -->
+      <div class="form-field">
+        <label for="modal-message">Message (Optional)</label>
+        <textarea 
+          id="modal-message" 
+          name="message" 
+          placeholder="Tell us about your goals..."
+          rows="3"
+          maxlength="500"
+        ></textarea>
+        <span class="char-count">0 / 500</span>
+      </div>
+      
+      <!-- Submit Button -->
+      <button type="submit" class="modal-submit-btn" id="modal-submit">
+        <span class="btn-text">Confirm Booking</span>
+        <span class="btn-loading" style="display: none;">
+          <svg class="spinner" width="20" height="20" viewBox="0 0 20 20">
+            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none" 
+                    stroke-dasharray="40" stroke-dashoffset="10">
+              <animateTransform attributeName="transform" type="rotate" 
+                              from="0 10 10" to="360 10 10" dur="1s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+          Processing...
+        </span>
+      </button>
+      
+      <p class="form-terms">
+        By booking, you agree to our 
+        <a href="#" class="link">Terms of Service</a> and 
+        <a href="#" class="link">Privacy Policy</a>
+      </p>
+    </form>
+    
+    <!-- Success Message -->
+    <div class="booking-success" style="display: none;">
+      <svg width="60" height="60" fill="#4CAF50" viewBox="0 0 20 20">
+        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+      </svg>
+      <h3>Booking Confirmed!</h3>
+      <p>Thank you for booking a session. We'll contact you within 24 hours.</p>
+      <button class="another-booking-btn">Book Another Session</button>
+    </div>
+  </div>
+</div>
 
   <section id="about" class="about-section">
   <div class="about-inner container">
@@ -125,6 +270,28 @@
     </div>
   </section>
 
+  <!-- Event Highlights Section -->
+<section class="events" id="events">
+  <h2>Event Highlights</h2>
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="client images\event 1.jpeg" alt="Event 1"></div>
+      <div class="swiper-slide"><img src="client images\event 2.jpeg" alt="Event 2"></div>
+      <div class="swiper-slide"><img src="client images\event 3.jpeg" alt="Event 3"></div>
+      <div class="swiper-slide"><img src="client images\event 4.jpeg"alt="Event 4"></div>
+      <div class="swiper-slide"><img src="client images\event 5.jpeg" alt="Event 5"></div>
+      <div class="swiper-slide"><img src="client images\event 6.jpeg" alt="Event 5"></div>
+      <div class="swiper-slide"><img src="client images\event 7.jpeg" alt="Event 5"></div>
+     <div class="swiper-slide"><img src="client images\event 8.jpeg" alt="Event 5"></div>
+    </div>
+
+    
+  </div>
+</section>
+
+
   <!-- Blog Section -->
   <section id = "blog" class="blog">
     <h2>Latest Blogs</h2>
@@ -151,5 +318,4 @@
   <script src="SCRIPT.JS"></script>
 </body>
 </html>
-
 
