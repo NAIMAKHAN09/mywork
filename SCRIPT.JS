@@ -1074,6 +1074,54 @@ if (heroBookBtn && bookingModal) {
       });
     });
   }
+// Mobile Menu Toggle with animation
+const mobileMenuToggle = () => {
+  const menuBtn = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const body = document.body;
+  
+  if (!menuBtn || !navLinks) return;
+  
+  menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    body.classList.toggle('menu-open');
+    
+    // Animate menu icon
+    const isOpen = navLinks.classList.contains('active');
+    menuBtn.innerHTML = isOpen ? '✕' : '☰';
+    menuBtn.style.transform = isOpen ? 'rotate(90deg)' : 'rotate(0)';
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.navbar') && navLinks.classList.contains('active')) {
+      navLinks.classList.remove('active');
+      body.classList.remove('menu-open');
+      menuBtn.innerHTML = '☰';
+    }
+  });
+  
+  // Close menu when clicking a link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      body.classList.remove('menu-open');
+      menuBtn.innerHTML = '☰';
+    });
+  });
+};
 
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', mobileMenuToggle);
+
+// Viewport height fix for mobile browsers
+const setVH = () => {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+
+setVH();
+window.addEventListener('resize', setVH);
   console.log("✅ All systems initialized");
 });
+
