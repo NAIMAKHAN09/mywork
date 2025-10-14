@@ -1074,8 +1074,7 @@ if (heroBookBtn && bookingModal) {
       });
     });
   }
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ Sabeeha site loaded");
+
 
   // ========================================
   // HEADER HEIGHT OFFSET
@@ -1335,4 +1334,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log("✅ All systems initialized");
 }); // <-- Only ONE closing bracket here
+
 
