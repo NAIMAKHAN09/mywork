@@ -1074,54 +1074,265 @@ if (heroBookBtn && bookingModal) {
       });
     });
   }
-// Mobile Menu Toggle with animation
-const mobileMenuToggle = () => {
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ Sabeeha site loaded");
+
+  // ========================================
+  // HEADER HEIGHT OFFSET
+  // ========================================
+  const header = document.querySelector("header");
+  const setHeaderOffset = () => {
+    if (!header) return;
+    document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
+  };
+  setHeaderOffset();
+  window.addEventListener("resize", setHeaderOffset);
+
+  // ========================================
+  // MOBILE NAVIGATION - COMPLETE FIX
+  // ========================================
   const menuBtn = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   const body = document.body;
   
-  if (!menuBtn || !navLinks) return;
-  
-  menuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    body.classList.toggle('menu-open');
+  if (menuBtn && navLinks) {
+    console.log("✅ Mobile menu initialized");
     
-    // Animate menu icon
-    const isOpen = navLinks.classList.contains('active');
-    menuBtn.innerHTML = isOpen ? '✕' : '☰';
-    menuBtn.style.transform = isOpen ? 'rotate(90deg)' : 'rotate(0)';
-  });
-  
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.navbar') && navLinks.classList.contains('active')) {
-      navLinks.classList.remove('active');
-      body.classList.remove('menu-open');
-      menuBtn.innerHTML = '☰';
-    }
-  });
-  
-  // Close menu when clicking a link
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      body.classList.remove('menu-open');
-      menuBtn.innerHTML = '☰';
+    // Toggle menu on button click
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle('active');
+      body.classList.toggle('menu-open');
+      
+      // Animate menu icon
+      const isOpen = navLinks.classList.contains('active');
+      menuBtn.innerHTML = isOpen ? '✕' : '☰';
+      menuBtn.style.transform = isOpen ? 'rotate(90deg)' : 'rotate(0)';
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.navbar') && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        body.classList.remove('menu-open');
+        menuBtn.innerHTML = '☰';
+        menuBtn.style.transform = 'rotate(0)';
+      }
+    });
+    
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        body.classList.remove('menu-open');
+        menuBtn.innerHTML = '☰';
+        menuBtn.style.transform = 'rotate(0)';
+      });
+    });
+  } else {
+    console.log("⚠️ Menu button or nav links not found");
+  }
+
+  // ========================================
+  // VIEWPORT HEIGHT FIX FOR MOBILE
+  // ========================================
+  const setVH = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+  setVH();
+  window.addEventListener('resize', setVH);
+
+  // ========================================
+  // TYPING EFFECT (IF EXISTS)
+  // ========================================
+  const typingElement = document.querySelector(".typing-text");
+  if (typingElement) {
+    const texts = ["Soft Skills Trainer", "IELTS Coach", "Corporate Speaker"];
+    let i = 0, j = 0, deleting = false;
+
+    const type = () => {
+      const current = texts[i];
+      typingElement.textContent = current.slice(0, j);
+
+      if (!deleting && j < current.length) {
+        j++;
+        setTimeout(type, 120);
+      } else if (!deleting && j === current.length) {
+        deleting = true;
+        setTimeout(type, 1200);
+      } else if (deleting && j > 0) {
+        j--;
+        setTimeout(type, 60);
+      } else {
+        deleting = false;
+        i = (i + 1) % texts.length;
+        setTimeout(type, 300);
+      }
+    };
+    type();
+  }
+
+  // ========================================
+  // COUNTER ANIMATION
+  // ========================================
+  const counters = document.querySelectorAll(".counter");
+  if (counters.length) {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const animateCounter = (el) => {
+      const target = Number(el.dataset.target || 0);
+      if (prefersReduced) {
+        el.textContent = target.toLocaleString() + "+";
+        return;
+      }
+      const duration = 1200;
+      const startTime = performance.now();
+
+      const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.floor(target * progress);
+        el.textContent = value.toLocaleString();
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString() + "+";
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach((c) => io.observe(c));
+  }
+
+  // ========================================
+  // SWIPER INITIALIZATION
+  // ========================================
+  const swiperEl = document.querySelector(".mySwiper");
+  if (swiperEl && typeof Swiper !== 'undefined') {
+    new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      loop: true,
+      speed: 5000,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
+      allowTouchMove: false,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+    console.log("✅ Swiper initialized");
+  }
+
+  // ========================================
+  // SMOOTH SCROLL FOR ANCHOR LINKS
+  // ========================================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = target.offsetTop - headerHeight;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
     });
   });
-};
 
-// Initialize on DOM load
-document.addEventListener('DOMContentLoaded', mobileMenuToggle);
+  // ========================================
+  // HERO BOOKING MODAL (IF EXISTS)
+  // ========================================
+  const heroBookBtn = document.getElementById('hero-book-btn');
+  const bookingModal = document.getElementById('booking-modal');
+  const closeModalBtn = document.getElementById('close-booking-modal');
 
-// Viewport height fix for mobile browsers
-const setVH = () => {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-};
+  if (heroBookBtn && bookingModal) {
+    // Open modal
+    heroBookBtn.addEventListener('click', () => {
+      bookingModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    // Close modal function
+    function closeBookingModal() {
+      bookingModal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    
+    // Close button click
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', closeBookingModal);
+    }
+    
+    // Click outside to close
+    bookingModal.addEventListener('click', (e) => {
+      if (e.target === bookingModal) {
+        closeBookingModal();
+      }
+    });
+    
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && bookingModal.classList.contains('show')) {
+        closeBookingModal();
+      }
+    });
+  }
 
-setVH();
-window.addEventListener('resize', setVH);
+  // ========================================
+  // BLOG MODAL (IF ON BLOG PAGE)
+  // ========================================
+  const modalOverlay = document.getElementById("modal-overlay");
+  if (modalOverlay) {
+    // Your existing blog modal code here
+    console.log("✅ Blog modal system initialized");
+  }
+
+  // ========================================
+  // CATEGORY FILTER (BLOG PAGE)
+  // ========================================
+  const categoryButtons = document.querySelectorAll(".blog-categories button");
+  const blogCards = document.querySelectorAll(".blog-card");
+
+  if (categoryButtons.length && blogCards.length) {
+    categoryButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        categoryButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        
+        const category = button.textContent.trim().toLowerCase();
+        
+        blogCards.forEach(card => {
+          const cardTag = card.querySelector(".tag")?.textContent.toLowerCase();
+          
+          if (category === "all topics" || cardTag?.includes(category.split(" ")[0])) {
+            card.style.display = "";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  }
+
   console.log("✅ All systems initialized");
-});
+}); // <-- Only ONE closing bracket here
 
