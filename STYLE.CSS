@@ -1902,4 +1902,53 @@ html {
 .booking-modal {
   -webkit-overflow-scrolling: touch;
 }
+/* Emergency Mobile Fixes */
+@media (max-width: 767px) {
+  /* Fix content overflow */
+  * {
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  /* Fix images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Fix horizontal scroll */
+  .hero, .about-section, .services, .blog-grid, .booking-section {
+    overflow-x: hidden;
+  }
+  
+  /* Increase touch targets */
+  button, .btn, a {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Fix text size */
+  html {
+    font-size: 16px;
+  }
+  
+  /* Add breathing room */
+  section {
+    padding: 60px 20px !important;
+  }
+  
+  /* Stack everything vertically */
+  .hero, .about-inner, .service-cards, .blog-grid, .booking-content {
+    flex-direction: column !important;
+    display: flex !important;
+  }
+  
+  /* Full width forms */
+  input, select, textarea, button {
+    width: 100% !important;
+  }
+}
+
 
