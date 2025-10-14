@@ -1175,3 +1175,731 @@ header.sticky {
 body.modal-open {
   overflow: hidden;
 }
+
+/* ========================================
+   MOBILE-FIRST RESPONSIVE STYLES
+======================================== */
+
+/* General Reset - Mobile First */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background: #ffffff;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* ========================================
+   MOBILE NAVIGATION
+======================================== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+  height: 60px; /* Smaller on mobile */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Less padding on mobile */
+  height: 100%;
+}
+
+.logo {
+  font-size: 1.3rem; /* Smaller logo on mobile */
+  font-weight: bold;
+  color: #5B2C75;
+}
+
+/* Mobile Menu Button */
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #5B2C75;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1002;
+}
+
+/* Mobile Navigation Menu */
+.nav-links {
+  position: fixed;
+  top: 60px;
+  right: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: calc(100vh - 60px);
+  background: white;
+  flex-direction: column;
+  padding: 30px 20px;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  z-index: 1001;
+}
+
+.nav-links.active {
+  right: 0;
+}
+
+.nav-links li {
+  list-style: none;
+  margin: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.nav-links li a {
+  display: block;
+  padding: 15px 10px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #6a1b9a;
+  background: #f8f4fc;
+  padding-left: 20px;
+}
+
+/* Body padding for fixed header */
+body {
+  padding-top: 60px;
+}
+
+/* ========================================
+   MOBILE HERO SECTION
+======================================== */
+.hero {
+  min-height: calc(100vh - 60px);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #E6D6F2 0%, #ffffff 100%);
+  gap: 30px;
+}
+
+.hero-content {
+  max-width: 100%;
+  order: 2; /* Image first on mobile */
+}
+
+.hero-content h1 {
+  font-size: 1.8rem; /* Smaller on mobile */
+  line-height: 1.3;
+  margin-bottom: 15px;
+  color: #5B2C75;
+}
+
+.hero-content h1 em {
+  font-style: italic;
+  color: #6a1b9a;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  margin-bottom: 25px;
+  color: #555;
+  padding: 0 10px;
+}
+
+.hero-image {
+  order: 1; /* Image first */
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Mobile-friendly button */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #6a1b9a, #5B2C75);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 200px;
+  box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(106, 27, 154, 0.4);
+}
+
+/* ========================================
+   MOBILE ABOUT SECTION
+======================================== */
+.about-section {
+  padding: 60px 20px;
+  background: #fff;
+}
+
+.about-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 100%;
+  align-items: center;
+}
+
+.about-photo {
+  width: 100%;
+  max-width: 300px;
+  height: 350px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-text {
+  text-align: center;
+  padding: 0;
+}
+
+.about-text h2 {
+  font-size: 1.8rem;
+  color: #5B2C75;
+  margin-bottom: 15px;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.about-highlights {
+  list-style: none;
+  padding: 20px 0;
+  text-align: left;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.about-highlights li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.about-highlights li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #6a1b9a;
+  font-weight: bold;
+}
+
+.about-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+  margin: 20px auto 0;
+}
+
+.about-cta .btn {
+  width: 100%;
+}
+
+/* ========================================
+   MOBILE SERVICES SECTION
+======================================== */
+.services {
+  padding: 60px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: 1.8rem;
+  color: #5B2C75;
+  margin-bottom: 30px;
+}
+
+.service-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.service-cards .card {
+  background: white;
+  padding: 25px 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.service-cards .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ========================================
+   MOBILE BLOG SECTION
+======================================== */
+.blog-hero {
+  padding: 30px 20px;
+  text-align: center;
+  background: white;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.blog-hero h1 {
+  font-size: 2rem;
+  color: #000;
+}
+
+.blog-categories {
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.blog-categories::-webkit-scrollbar {
+  display: none;
+}
+
+.blog-categories button {
+  padding: 8px 16px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border: 2px solid #6a1b9a;
+  background: white;
+  color: #6a1b9a;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.blog-categories button.active,
+.blog-categories button:hover {
+  background: #6a1b9a;
+  color: white;
+}
+
+.blog-grid {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.blog-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.blog-card h2 {
+  font-size: 1.3rem;
+  margin: 15px 0;
+  color: #000;
+}
+
+.blog-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.blog-card .read-more {
+  width: 100%;
+  padding: 12px;
+  background: #6a1b9a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* ========================================
+   MOBILE BOOKING SECTION
+======================================== */
+.booking-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f5f5f5, #fff);
+}
+
+.booking-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.booking-header h2 {
+  font-size: 1.8rem;
+  color: #1a202c;
+  margin-bottom: 10px;
+}
+
+.booking-header p {
+  font-size: 0.95rem;
+  color: #718096;
+}
+
+.booking-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.booking-info {
+  position: static;
+  order: 2;
+}
+
+.info-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.info-card h3 {
+  font-size: 1.2rem;
+  color: #5B2C75;
+  margin-bottom: 15px;
+}
+
+.booking-form-wrapper {
+  background: white;
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  order: 1;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #6a1b9a, #5B2C75);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* ========================================
+   MOBILE MODAL
+======================================== */
+.booking-modal .modal-dialog {
+  max-width: 95%;
+  max-height: 90vh;
+  margin: 20px;
+  padding: 30px 20px;
+  border-radius: 15px;
+  overflow-y: auto;
+}
+
+.modal-close-btn {
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+}
+
+/* ========================================
+   TABLET STYLES (768px and up)
+======================================== */
+@media (min-width: 768px) {
+  /* Header */
+  header {
+    height: 80px;
+  }
+  
+  body {
+    padding-top: 80px;
+  }
+  
+  .navbar {
+    padding: 0 40px;
+  }
+  
+  .logo {
+    font-size: 1.6rem;
+  }
+  
+  .menu-toggle {
+    display: none;
+  }
+  
+  .nav-links {
+    position: static;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+    gap: 25px;
+    display: flex;
+  }
+  
+  .nav-links li {
+    border: none;
+  }
+  
+  .nav-links li a {
+    padding: 5px 10px;
+    font-size: 1rem;
+  }
+  
+  /* Hero */
+  .hero {
+    flex-direction: row;
+    text-align: left;
+    padding: 60px 40px;
+  }
+  
+  .hero-content {
+    order: 1;
+    flex: 1;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero-content p {
+    padding: 0;
+  }
+  
+  .hero-image {
+    order: 2;
+    flex: 0 0 350px;
+  }
+  
+  /* About */
+  .about-inner {
+    flex-direction: row;
+    text-align: left;
+    gap: 40px;
+  }
+  
+  .about-photo {
+    flex: 0 0 300px;
+  }
+  
+  .about-text {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .about-highlights {
+    margin: 0;
+  }
+  
+  .about-cta {
+    flex-direction: row;
+    margin: 20px 0 0;
+  }
+  
+  /* Services */
+  .service-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 900px;
+  }
+  
+  .service-cards .card {
+    flex: 0 0 calc(50% - 20px);
+  }
+  
+  /* Blog */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 40px;
+  }
+  
+  /* Booking */
+  .booking-content {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+  }
+  
+  .booking-info {
+    order: 1;
+  }
+  
+  .booking-form-wrapper {
+    order: 2;
+    padding: 40px;
+  }
+  
+  .form-row {
+    flex-direction: row;
+  }
+}
+
+/* ========================================
+   DESKTOP STYLES (1024px and up)
+======================================== */
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 0 60px;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+  }
+  
+  .hero {
+    padding: 80px 60px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  
+  .hero-image {
+    flex: 0 0 450px;
+  }
+  
+  .about-photo {
+    flex: 0 0 350px;
+    height: 430px;
+  }
+  
+  .service-cards .card {
+    flex: 0 0 calc(33.333% - 20px);
+  }
+  
+  .blog-grid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 60px;
+  }
+  
+  .booking-content {
+    grid-template-columns: 400px 1fr;
+  }
+}
+
+/* ========================================
+   UTILITIES FOR MOBILE
+======================================== */
+
+/* Prevent horizontal scroll */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Touch-friendly tap targets */
+button, a, input, select, textarea {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve readability */
+@media (max-width: 767px) {
+  p, li {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Fix modal overlay on mobile */
+.article-modal-overlay,
+.booking-modal {
+  -webkit-overflow-scrolling: touch;
+}
+
