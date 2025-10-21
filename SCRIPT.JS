@@ -21,6 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
     menuBtn.addEventListener("click", () => {
       const open = navList.classList.toggle("active");
       menuBtn.setAttribute("aria-expanded", String(open));
+      // prevent background scroll when menu is open
+      if (open) {
+        document.body.classList.add('menu-open');
+      } else {
+        document.body.classList.remove('menu-open');
+      }
     });
 
     // Close on link click
@@ -28,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.target.closest("a")) {
         navList.classList.remove("active");
         menuBtn.setAttribute("aria-expanded", "false");
+        document.body.classList.remove('menu-open');
       }
     });
 
@@ -36,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === "Escape" && navList.classList.contains("active")) {
         navList.classList.remove("active");
         menuBtn.setAttribute("aria-expanded", "false");
+        document.body.classList.remove('menu-open');
       }
     });
   }
