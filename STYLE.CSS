@@ -1239,5 +1239,25 @@ body.modal-open {
     margin-top: 20px;
   }
 }
+/* --- BLOG GRID FIX --- */
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+  padding: 20px;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+  .blog-list {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on mobile */
+    gap: 15px;
+    padding: 10px;
+  }
+}
+
+
 
 
