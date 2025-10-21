@@ -959,14 +959,14 @@ if (heroBookBtn && bookingModal) {
       // Build article HTML
       const articleHTML = `
         <article class="article-full-content">
-          ${article.image ? `<img src="${article.image}" alt="${article.title}" class="article-hero-image">` : ''}
-          
           <header class="article-header">
             <span class="tag">${article.tag}</span>
             <span class="date">${article.date} • ${article.readTime}</span>
             <h2>${article.title}</h2>
           </header>
-          
+
+          ${article.image ? `<img src="${article.image}" alt="${article.title}" class="article-hero-image">` : ''}
+
           <div class="article-body">
             ${article.content}
           </div>
