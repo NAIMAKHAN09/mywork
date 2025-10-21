@@ -1009,7 +1009,7 @@ header.sticky {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 10020; /* ensure it's above article images */
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -1030,10 +1030,12 @@ header.sticky {
 
 /* Modal Content */
 .modal-content {
-  padding: 60px;
+  /* Add extra top padding so header and close button never cover content */
+  padding: 80px 60px 60px;
   overflow-y: auto;
   flex: 1;
   scroll-behavior: smooth;
+  position: relative;
 }
 
 /* Loading State */
@@ -1084,16 +1086,21 @@ header.sticky {
 
 /* Article Content Styling */
 .article-hero-image {
-  width: calc(100% + 120px);
-  margin: -60px -60px 40px;
+  /* Avoid negative margins that overlap the modal header/title.
+     Use full-width within the modal content and a bottom margin for spacing. */
+  width: 100%;
+  margin: 0 0 40px;
   height: 400px;
   object-fit: cover;
 }
 
 .article-header {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
+  margin-bottom: 18px;
+  padding: 20px 0 18px;
   border-bottom: 2px solid #e2e8f0;
+  background: #fff; /* ensure header contrasts above images */
+  position: relative;
+  z-index: 5; /* place above the hero image */
 }
 
 .article-full-content h2 {
@@ -1164,9 +1171,9 @@ header.sticky {
   }
   
   .article-hero-image {
-    width: calc(100% + 50px);
-    margin: -50px -25px 30px;
-    height: 250px;
+    width: 100%;
+    margin: 0 0 20px;
+    height: 220px;
   }
   
   .article-full-content h2 {
