@@ -682,61 +682,47 @@ header.sticky {
 
 /* Clients Section */
 .clients {
-  padding: 50px;
+  padding: 40px 16px;
   text-align: center;
 }
 
 .clients h2 {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-family: Arial, sans-serif;
 }
 
-.client-logos img {
-  width: 220px;
-  margin: 0 12px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: pointer;
-  border-radius: 10px;
+/* Layout the logos in rows, wrap on small screens */
+.client-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 20px; /* row gap / column gap */
 }
 
-/* Normalize logos: make them more consistent visually */
+/* Consistent logo sizing (mobile-first) */
 .client-logos img {
-  height: 72px; /* baseline visual height */
+  height: clamp(36px, 9vw, 72px); /* scales with viewport, caps at 72px */
   width: auto;
+  max-width: 45vw;               /* prevents super-wide logos on small screens */
   object-fit: contain;
   background: transparent;
   padding: 6px 10px;
+  border-radius: 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
 }
 
-/* Per-logo adjustments (tweak as needed) */
-.client-logos img.logo-ldce {
-  height: 72px; /* bring LDCE down to baseline */
-}
+/* Optional per-logo tweaks (adjust as needed) */
+.client-logos img.logo-ksv { height: clamp(40px, 10vw, 80px); }
 
-.client-logos img.logo-ksv {
-  height: 80px; /* increase KSV so it doesn't appear too small */
+/* Hover (desktop only) */
+@media (hover: hover) {
+  .client-logos img:hover {
+    transform: translateY(-6px) scale(1.06);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
 }
-
-.client-logos img.logo-torrent {
-  height: 72px;
-}
-
-.client-logos img.logo-ishrae {
-  height: 72px;
-}
-
-/* Hover effect */
-.client-logos img:hover {
-  transform: translateY(-10px) scale(1.1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.events {
-  padding: 60px 20px;
-  background: #f9f9f9;
-  text-align: center;
-}
-
 /* Event Section */
 .events h2 {
   font-size: 2rem;
@@ -1343,6 +1329,7 @@ body.modal-open {
     padding: 10px;
   }
 }
+
 
 
 
