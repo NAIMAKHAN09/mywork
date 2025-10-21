@@ -496,31 +496,30 @@ if (heroBookBtn && bookingModal) {
     counters.forEach((c) => io.observe(c));
   }
 
-  // --- Swiper initialization ---
-  const swiperEl = document.querySelector(".mySwiper");
-  if (swiperEl && typeof Swiper !== 'undefined') {
-    new Swiper(".mySwiper", {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      speed: 5000,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-      },
-      allowTouchMove: false,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-    console.log("✅ Swiper initialized");
-  }
+ // --- Swiper initialization ---
+const swiperEl = document.querySelector(".mySwiper");
+if (swiperEl && typeof Swiper !== 'undefined') {
+  new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
 
+    // fixed frame => no autoHeight
+    autoHeight: false,
+
+    speed: 5000,
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false,
+    },
+    allowTouchMove: false,
+
+    pagination: { el: ".swiper-pagination", clickable: true },
+    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
+  });
+  console.log("✅ Swiper initialized with fixed frame");
+}
+  
   // ========================================
   // BLOG MODAL FUNCTIONALITY
   // ========================================
