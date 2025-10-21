@@ -1,321 +1,1207 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Navigation Bar -->
-<header>
-  <nav class="navbar" role="navigation" aria-label="Primary">
-    <div class="logo">Sabeeha Mirza</div>
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
 
-    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle menu">
-      ☰
-    </button>
+body {
+  background: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
 
-    <ul id="primary-navigation" class="nav-links">
-      <li><a href="index.html#home">Home</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#services">Services</a></li>
-      <li><a href="index.html#clients">Clients</a></li>
-      <li><a href="blog.html" class="active">Blog</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+/* Navigation Bar */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
 
-  <title>Sabeeha - Soft Skills & Spoken English Coach</title>
-  <link rel="stylesheet" href="STYLE.CSS">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+/* Optional: smooth scroll for in-page anchors */
+html { scroll-behavior: smooth; }
+
+/* Ensure content isn't hidden behind the fixed header */
+body { padding-top: var(--header-h, 80px); }
+
+header.sticky {
+  top: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #5B2C75;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #7c3ea6;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /* Mobile: make nav a fullscreen overlay */
+  .nav-links {
+    position: fixed;
+    top: var(--header-h, 64px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(242,229,247,0.98), #ffffff);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - var(--header-h, 64px));
+    padding: 28px 20px;
+    display: none;
+    box-shadow: none;
+    z-index: 10050;
+    gap: 18px;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    list-style: none;
+  }
+
+  .nav-links li a {
+    font-size: 1.25rem;
+    padding: 12px 18px;
+    display: inline-block;
+    color: #3b1a45;
+  }
+
+  .menu-toggle {
+    display: block;
+    color: #5B2C75;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-size: 1.6rem;
+    z-index: 10100;
+  }
+
+  /* Prevent background scroll when menu open */
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80vh;
+  padding: 40px 5%;
+  gap: 20px;
+  background: linear-gradient(135deg, #E6D6F2, #ffffff);
+  color: #333;
+}
+
+/* Left Content */
+.hero-content {
+  flex: 1 1 380px;
+  max-width: 680px;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+  line-height: 1.25;
+  margin-bottom: 18px;
+  color: #5B2C75;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+/* Button */
+.hero-content .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #5B2C75;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.hero-content .btn:hover {
+  background: #7c3ea6;
+}
+
+/* Right Image */
+.hero-image img {
+  width: 100%;
+  max-width: 520px;
+  height: auto; /* allow natural scaling */
+  max-height: 70vh;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Booking Modal Styles */
+.booking-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.80);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.booking-modal.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-dialog {
+  background: white;
+  border-radius: 14px;
+  padding: 28px;
+  max-width: 560px;
+  width: 100%;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.28s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Custom Scrollbar for Modal */
+.modal-dialog::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-dialog::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.modal-dialog::-webkit-scrollbar-thumb {
+  background: #6a1b9a;
+  border-radius: 10px;
+}
+
+/* Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f5f5f5;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.modal-close-btn:hover {
+  background: #6a1b9a;
+  transform: rotate(90deg);
+}
+
+.modal-close-btn:hover svg {
+  stroke: white;
+}
+
+/* Modal Header */
+.modal-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.modal-header h2 {
+  color: #1a202c;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.modal-header p {
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+/* Form Styling */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-field label {
+  color: #2d3748;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: 12px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #fff;
+  color: #2d3748;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #6a1b9a;
+  box-shadow: 0 0 0 3px rgba(106, 27, 154, 0.1);
+}
+
+/* Phone Input with Country Code */
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.phone-input-wrapper:focus-within {
+  border-color: #6a1b9a;
+  box-shadow: 0 0 0 3px rgba(106, 27, 154, 0.1);
+}
+
+.country-code {
+  background: #f7fafc;
+  padding: 12px 14px;
+  color: #4a5568;
+  font-weight: 600;
+  border-right: 2px solid #e2e8f0;
+}
+
+.phone-input-wrapper input {
+  border: none !important;
+  flex: 1;
+  padding: 12px 14px;
+}
+
+.phone-input-wrapper input:focus {
+  box-shadow: none !important;
+}
+
+/* Error States */
+.form-field input.error,
+.form-field select.error,
+.form-field textarea.error,
+.phone-input-wrapper.error {
+  border-color: #fc8181 !important;
+  animation: shake 0.3s ease;
+}
+
+.field-error {
+  color: #e53e3e;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.field-error.show {
+  display: block;
+}
+
+/* Valid State */
+.form-field input.valid,
+.form-field select.valid {
+  border-color: #48bb78 !important;
+}
+
+/* Character Counter */
+.char-count {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #a0aec0;
+  margin-top: 4px;
+}
+
+/* Submit Button */
+.modal-submit-btn {
+  background: linear-gradient(135deg, #6a1b9a 0%, #5B2C75 100%);
+  color: white;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.modal-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(106, 27, 154, 0.3);
+}
+
+.modal-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-loading .spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Terms */
+.form-terms {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #718096;
+  margin-top: 10px;
+}
+
+.form-terms .link {
+  color: #6a1b9a;
+  text-decoration: underline;
+}
+
+/* Success Message */
+.booking-success {
+  text-align: center;
+  padding: 40px 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+.booking-success svg {
+  margin-bottom: 20px;
+}
+
+.booking-success h3 {
+  color: #2d3748;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.booking-success p {
+  color: #718096;
+  margin-bottom: 25px;
+}
+
+.another-booking-btn {
+  background: #6a1b9a;
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.another-booking-btn:hover {
+  background: #5B2C75;
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(30px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .modal-dialog {
+    padding: 30px 20px;
+    margin: 20px;
+  }
   
- 
+  .modal-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .modal-close-btn {
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+  }
+}
+/* About section */
+.about-section {
+  padding: 60px 20px;
+  background: #fff;
+  color: #222;
+}
 
-</head>
-<body>
-  <section id="home" class="hero">
-  <div class="hero-content">
-    <h1>Helping leaders & emerging leaders <br><em>Move to be More.</em></h1>
-    <p>
-      Through personal and corporate life coaching, I help emerging leaders, teams, 
-      and individuals get more out of their personal and professional lives.
-    </p>
-    <button class="btn" id="hero-book-btn">Book a Coaching Session</button>
-  </div>
-  <div class="hero-image">
-    <img src="client images/HOME.jpeg" alt="Sabeeha Mirza Speaking">
-  </div>
-</section>
+.about-inner {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
 
+/* Photo column */
+.about-photo {
+  flex: 0 0 320px;
+  height: 430px;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  background: #f3f3f3;
+}
 
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-<!-- Enhanced Booking Modal -->
-<div class="booking-modal" id="booking-modal">
-  <div class="modal-dialog">
-    <button class="modal-close-btn" id="close-booking-modal" aria-label="Close">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
-    
-    <div class="modal-header">
-      <h2>Book Your Session</h2>
-      <p>Fill in your details and we'll get back to you within 24 hours</p>
-    </div>
-    
-    <form id="modal-booking-form" class="modal-form">
-      <!-- Name Field -->
-      <div class="form-field">
-        <label for="modal-name">Full Name *</label>
-        <input 
-          type="text" 
-          id="modal-name" 
-          name="name" 
-          placeholder="Enter your full name" 
-          required
-          minlength="3"
-          pattern="[A-Za-z\s]+"
-          title="Please enter only letters and spaces"
-        >
-        <span class="field-error"></span>
-      </div>
-      
-      <!-- Email Field -->
-      <div class="form-field">
-        <label for="modal-email">Email Address *</label>
-        <input 
-          type="email" 
-          id="modal-email" 
-          name="email" 
-          placeholder="your.email@example.com" 
-          required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          title="Please enter a valid email address"
-        >
-        <span class="field-error"></span>
-      </div>
-      
-      <!-- Phone Field -->
-      <div class="form-field">
-        <label for="modal-phone">Phone Number *</label>
-        <div class="phone-input-wrapper">
-          <span class="country-code">+91</span>
-          <input 
-            type="tel" 
-            id="modal-phone" 
-            name="phone" 
-            placeholder="98765 43210" 
-            required
-            maxlength="10"
-            pattern="[0-9]{10}"
-            title="Please enter a 10-digit phone number"
-          >
-        </div>
-        <span class="field-error"></span>
-      </div>
-      
-      <!-- Service Selection -->
-      <div class="form-field">
-        <label for="modal-service">Select Service *</label>
-        <select id="modal-service" name="service" required>
-          <option value="">Choose a service...</option>
-          <option value="leadership-coaching">Leadership Coaching</option>
-          <option value="soft-skills">Soft Skills Training</option>
-          <option value="ielts">IELTS Coaching</option>
-          <option value="public-speaking">Public Speaking</option>
-          <option value="corporate">Corporate Training</option>
-          <option value="communication">Communication Skills</option>
-        </select>
-        <span class="field-error"></span>
-      </div>
-      
-      <!-- Date Selection -->
-      <div class="form-field">
-        <label for="modal-date">Preferred Date *</label>
-        <input 
-          type="date" 
-          id="modal-date" 
-          name="date" 
-          required
-          min=""
-        >
-        <span class="field-error"></span>
-      </div>
-      
-      <!-- Message -->
-      <div class="form-field">
-        <label for="modal-message">Message (Optional)</label>
-        <textarea 
-          id="modal-message" 
-          name="message" 
-          placeholder="Tell us about your goals..."
-          rows="3"
-          maxlength="500"
-        ></textarea>
-        <span class="char-count">0 / 500</span>
-      </div>
-      
-      <!-- Submit Button -->
-      <button type="submit" class="modal-submit-btn" id="modal-submit">
-        <span class="btn-text">Confirm Booking</span>
-        <span class="btn-loading" style="display: none;">
-          <svg class="spinner" width="20" height="20" viewBox="0 0 20 20">
-            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none" 
-                    stroke-dasharray="40" stroke-dashoffset="10">
-              <animateTransform attributeName="transform" type="rotate" 
-                              from="0 10 10" to="360 10 10" dur="1s" repeatCount="indefinite"/>
-            </circle>
-          </svg>
-          Processing...
-        </span>
-      </button>
-      
-      <p class="form-terms">
-        By booking, you agree to our 
-        <a href="#" class="link">Terms of Service</a> and 
-        <a href="#" class="link">Privacy Policy</a>
-      </p>
-    </form>
-    
-    <!-- Success Message -->
-    <div class="booking-success" style="display: none;">
-      <svg width="60" height="60" fill="#4CAF50" viewBox="0 0 20 20">
-        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
-      </svg>
-      <h3>Booking Confirmed!</h3>
-      <p>Thank you for booking a session. We'll contact you within 24 hours.</p>
-      <button class="another-booking-btn">Book Another Session</button>
-    </div>
-  </div>
-</div>
+/* Text column */
+.about-text {
+  flex: 1;
+  min-width: 0;
+}
 
-  <section id="about" class="about-section">
-  <div class="about-inner container">
-    <div class="about-photo">
-      <img src="client images/ABOUT.jpeg" alt="Sabeeha Mirza speaking at a workshop">
-    </div>
+.about-text h2 {
+  color: #5B2C75;
+  margin-bottom: 12px;
+  font-size: 1.9rem;
+}
 
-    <div class="about-text">
-      <h2>About Sabeeha Mirza</h2>
-      <p class="lead">Professional soft-skills trainer, IELTS coach, and corporate speaker who helps individuals and teams communicate with confidence and clarity.</p>
+.about-text .lead {
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #333;
+}
 
-      <p>
-        With over <strong>10 years</strong> of experience delivering workshops and training across universities and corporations, Sabeeha blends practical techniques with real-world examples to create learning that sticks.
-      </p>
+.about-text p {
+  margin-bottom: 14px;
+  color: #444;
+  line-height: 1.6;
+}
 
-      <ul class="about-highlights">
-        <li><strong>50+</strong> workshops conducted</li>
-        <li><strong>5000+</strong> participants trained</li>
-        <li>Visiting faculty at AMA, corporate programs for Kalupur Bank & PDEU</li>
-      </ul>
+.about-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 20px;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0,1fr));
+  gap: 8px;
+}
 
-      <div class="about-cta">
-        <a href="#contact" class="btn">Let's Work Together</a>
-        <a href="post1.html" class="btn btn-ghost">Read Training Stories</a>
-      </div>
-    </div>
-  </div>
-</section>
+.about-highlights li {
+  position: relative;
+  padding-left: 22px;
+  color: #333;
+  font-weight: 600;
+}
 
-  <section id="services" class="services">
-  <h2>What I Do</h2>
-  <div class="service-cards">
-    <div class="card">
-      <i class="fas fa-chalkboard-teacher"></i>
-      <h3>Soft Skills Training</h3>
-      <p>Helping individuals improve communication, leadership, and teamwork.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-book-reader"></i>
-      <h3>IELTS Coaching</h3>
-      <p>Guidance and strategies to excel in IELTS exams with confidence.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-users"></i>
-      <h3>Corporate Workshops</h3>
-      <p>Interactive sessions designed for professional growth and team building.</p>
-    </div>
-  </div>
-</section>
+.about-highlights li::before{
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #5B2C75;
+}
 
+/* CTA buttons */
+.about-cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
 
-  <section class="highlights">
-  <div class="container">
-    <h2>Highlights</h2>
-    <div class="highlight-cards">
-      <div class="highlight-card">
-        <h3 class="counter" data-target="10">0</h3>
-        <p>Years Experience</p>
-      </div>
-      <div class="highlight-card">
-        <h3 class="counter" data-target="50">0</h3>
-        <p>Workshops Conducted</p>
-      </div>
-      <div class="highlight-card">
-        <h3 class="counter" data-target="5000">0</h3>
-        <p>Students Trained</p>
-      </div>
-    </div>
-  </div>
-</section>
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #5B2C75;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+}
 
+.btn-ghost {
+  background: transparent;
+  color: #5B2C75;
+  border: 2px solid #E6D6F2;
+  padding: 8px 16px;
+}
 
-  <!-- Clients Section -->
-  <section id = "clients" class="clients">
-    <h2>Clients & Collaborations</h2>
-    <div class="client-logos">
-      <img src="client images/AMA.png" alt="AMA">
-      <img src="client images/PDEU.jpg" alt="PDEU">
-      <img src="client images/KALUPUR BANK.jpeg" alt="Kalupur Bank">
-    </div>
-  </section>
+/* Responsive: stack on smaller screens */
+@media (max-width: 880px) {
+  .about-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-  <!-- Event Highlights Section -->
-<section class="events" id="events">
-  <h2>Event Highlights</h2>
+  .about-photo {
+    width: 70%;
+    height: 420px;
+  }
 
-  <!-- Swiper -->
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="client images\event 1.jpeg" alt="Event 1"></div>
-      <div class="swiper-slide"><img src="client images\event 2.jpeg" alt="Event 2"></div>
-      <div class="swiper-slide"><img src="client images\event 3.jpeg" alt="Event 3"></div>
-      <div class="swiper-slide"><img src="client images\event 4.jpeg"alt="Event 4"></div>
-      <div class="swiper-slide"><img src="client images\event 5.jpeg" alt="Event 5"></div>
-      <div class="swiper-slide"><img src="client images\event 6.jpeg" alt="Event 5"></div>
-      <div class="swiper-slide"><img src="client images\event 7.jpeg" alt="Event 5"></div>
-     <div class="swiper-slide"><img src="client images\event 8.jpeg" alt="Event 5"></div>
-    </div>
+  .about-text {
+    padding-top: 18px;
+  }
 
-    
-  </div>
-</section>
+  .about-highlights {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center;
+  }
+}
 
+@media (max-width: 480px) {
+  .about-photo {
+    width: 90%;
+    height: 360px;
+  }
 
-  <!-- Blog Section -->
-  <section id = "blog" class="blog">
-    <h2>Latest Blogs</h2>
-    <div class="blog-posts">
-      <article>
-        <h3>Why Soft Skills Matter in 2025</h3>
-        <p>Soft skills have become essential for career growth and success in today’s world...</p>
-        <a href="BLOG.HTML" class="read-more">Read More</a>
-      </article>
-      <article>
-        <h3>Top 5 Tips for IELTS Speaking</h3>
-        <p>Boost your IELTS speaking score with these proven strategies...</p>
-        <a href="BLOG.HTML">Read More</a>
-      </article>
-    </div>
-  </section>
+  .about-highlights {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
-    <h2>Contact Me</h2>
-    <p>Email: sabeeha@example.com</p>
-    <p>WhatsApp: +91 99981 78600</p>
-  </section>
-  <script src="SCRIPT.JS"></script>
-</body>
-</html>
+/* Clients Section */
+.clients {
+  padding: 50px;
+  text-align: center;
+}
 
+.clients h2 {
+  margin-bottom: 30px;
+  font-family: Arial, sans-serif;
+}
+
+.client-logos img {
+  width: 220px;
+  margin: 0 12px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* Hover effect */
+.client-logos img:hover {
+  transform: translateY(-10px) scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.events {
+  padding: 60px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+/* Event Section */
+.events h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.swiper {
+  width: 100%;
+  max-width: 900px;
+  height: 360px;
+  margin: auto;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Blog Section */
+.blog {
+  padding: 40px 12px;
+  background: #f9f9f9;
+}
+
+.blog-posts {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.blog-posts article {
+  background: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  width: clamp(240px, 32%, 320px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.blog-posts h3 {
+  color: #5B2C75;
+}
+
+/* Contact Section */
+.contact {
+  padding: 50px;
+  text-align: center;
+  background: #5B2C75;
+  color: white;
+}
+
+/* BLOG PAGE STYLES */
+.blog-hero {
+  text-align: left;
+  padding: 50px 10%;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.blog-hero h1 {
+  font-size: clamp(1.6rem, 5.5vw, 42px);
+  font-weight: 800;
+  margin: 0;
+  color: #000;
+}
+
+/* Category Buttons */
+.blog-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  padding: 20px 10%;
+}
+
+.blog-categories button {
+  border: 1.5px solid #6a1b9a;
+  background: #fff;
+  color: #6a1b9a;
+  font-size: 15px;
+  padding: 8px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.blog-categories button.active,
+.blog-categories button:hover {
+  background: #6a1b9a;
+  color: #fff;
+}
+
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  padding: 16px 6%;
+  align-items: start;
+  transition: filter 0.3s ease;
+}
+
+/* Blur effect for background when modal is open */
+.blog-grid.blurred {
+  filter: blur(5px);
+}
+
+/* Blog Card */
+.blog-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  background: #fff;
+  padding: 18px 18px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
+}
+
+.blog-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Blog Image */
+.blog-card img {
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* Tags and Date */
+.blog-card .tag {
+  background: #f2e5f7;
+  color: #6a1b9a;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+}
+
+.blog-card .date {
+  float: right;
+  color: #777;
+  font-size: 13px;
+}
+
+/* Blog Content */
+.blog-card h2 {
+  font-size: 20px;
+  margin: 12px 0;
+  color: #000;
+}
+
+.blog-card p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Read More / Close Buttons */
+.read-more,
+.close-article {
+  background-color: #6a1b9a;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.read-more:hover,
+.close-article:hover {
+  background-color: #4a116f;
+}
+
+/* SERVICES SECTION */
+.services {
+  padding: 60px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.services h2 {
+  color: #5B2C75;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.service-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.service-cards .card {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  width: 280px;
+  font-weight: 600;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-cards .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  color: #5B2C75;
+}
+
+/* HIGHLIGHTS SECTION */
+.highlights {
+  padding: 60px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.highlights h2 {
+  color: #5B2C75;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.highlight-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.highlight-card {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  width: 220px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-card h3 {
+  color: #5B2C75;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.highlight-card p {
+  color: #333;
+  font-weight: 600;
+}
+
+/* MODAL STYLES */
+
+/* Modal Overlay */
+.article-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
+}
+
+.article-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Container */
+.article-modal {
+  background: #fff;
+  border-radius: 20px;
+  max-width: 950px;
+  width: 100%;
+  max-height: 90vh;
+  position: relative;
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-modal-overlay.active .article-modal {
+  transform: translateY(0) scale(1);
+}
+
+/* Close Button */
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-close:hover {
+  background: #6a1b9a;
+  transform: rotate(90deg);
+}
+
+.modal-close:hover svg {
+  color: #fff;
+}
+
+.modal-close svg {
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+/* Modal Content */
+.modal-content {
+  padding: 60px;
+  overflow-y: auto;
+  flex: 1;
+  scroll-behavior: smooth;
+}
+
+/* Loading State */
+.modal-loading {
+  display: none;
+  text-align: center;
+  padding: 60px;
+}
+
+.modal-loading .spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #6a1b9a;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.modal-loading p {
+  color: #718096;
+  font-size: 16px;
+}
+
+/* Custom Scrollbar */
+.modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #6a1b9a;
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #4a116f;
+}
+
+/* Article Content Styling */
+.article-hero-image {
+  width: calc(100% + 120px);
+  margin: -60px -60px 40px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.article-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.article-full-content h2 {
+  font-size: 2.5rem;
+  color: #000;
+  margin: 20px 0;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.article-full-content h3 {
+  font-size: 1.6rem;
+  color: #5B2C75;
+  margin: 35px 0 20px;
+  font-weight: 700;
+}
+
+.article-full-content .tag {
+  background: #f2e5f7;
+  color: #6a1b9a;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.article-full-content .date {
+  color: #718096;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.article-body {
+  color: #2d3748;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.article-body p {
+  margin-bottom: 24px;
+}
+
+.article-body strong {
+  color: #5B2C75;
+  font-weight: 700;
+}
+
+.article-body br {
+  margin-bottom: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .article-modal {
+    max-height: 100vh;
+    border-radius: 0;
+    max-width: 100%;
+  }
+  
+  .article-modal-overlay {
+    padding: 0;
+  }
+  
+  .modal-content {
+    padding: 50px 25px;
+  }
+  
+  .article-hero-image {
+    width: calc(100% + 50px);
+    margin: -50px -25px 30px;
+    height: 250px;
+  }
+  
+  .article-full-content h2 {
+    font-size: 1.8rem;
+  }
+  
+  .article-full-content h3 {
+    font-size: 1.3rem;
+  }
+  
+  .article-body {
+    font-size: 1rem;
+  }
+  
+  .modal-close {
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .blog-hero {
+    padding: 30px 5%;
+  }
+  
+  .blog-categories {
+    padding: 20px 5%;
+  }
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
