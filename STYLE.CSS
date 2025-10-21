@@ -41,9 +41,31 @@ header.sticky {
 }
 
 .logo {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #5B2C75;
+}
+
+.logo-sub {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #7c3ea6;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  .logo-sub {
+    display: block;
+    margin-left: 0;
+    font-size: 1rem;
+    margin-top: 4px;
+    font-weight: 600;
+  }
 }
 
 .nav-links {
@@ -129,7 +151,12 @@ header.sticky {
   min-height: 80vh;
   padding: 40px 5%;
   gap: 20px;
-  background: linear-gradient(135deg, #E6D6F2, #ffffff);
+
+  /* gradient overlay + background image */
+  background:
+    linear-gradient(135deg, rgba(230,214,242,0.85), rgba(255,255,255,0.85)),
+    url("client images/background.jpeg") center/cover no-repeat;
+
   color: #333;
 }
 
@@ -176,6 +203,8 @@ header.sticky {
   height: auto; /* allow natural scaling */
   max-height: 70vh;
   object-fit: cover;
+  /* keep the top of the image visible when cropping occurs */
+  object-position: top center;
   border-radius: 10px;
 }
 
@@ -670,6 +699,32 @@ header.sticky {
   border-radius: 10px;
 }
 
+/* Normalize logos: make them more consistent visually */
+.client-logos img {
+  height: 72px; /* baseline visual height */
+  width: auto;
+  object-fit: contain;
+  background: transparent;
+  padding: 6px 10px;
+}
+
+/* Per-logo adjustments (tweak as needed) */
+.client-logos img.logo-ldce {
+  height: 72px; /* bring LDCE down to baseline */
+}
+
+.client-logos img.logo-ksv {
+  height: 80px; /* increase KSV so it doesn't appear too small */
+}
+
+.client-logos img.logo-torrent {
+  height: 72px;
+}
+
+.client-logos img.logo-ishrae {
+  height: 72px;
+}
+
 /* Hover effect */
 .client-logos img:hover {
   transform: translateY(-10px) scale(1.1);
@@ -688,21 +743,45 @@ header.sticky {
   margin-bottom: 30px;
 }
 
-.swiper {
+/* Fixed frame for the slider */
+.mySwiper, .swiper {
   width: 100%;
   max-width: 900px;
-  height: 360px;
+  height: 360px; /* desktop frame */
   margin: auto;
 }
 
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+@media (max-width: 768px) {
+  .mySwiper, .swiper {
+    height: 240px; /* smaller frame on mobile */
+  }
+}
+
+/* Slide styling */
+.mySwiper .swiper-slide, .swiper .swiper-slide {
   border-radius: 12px;
+  overflow: hidden;
+  background: transparent; /* match your page bg if needed */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Force image to fit inside the frame (no crop) */
+.mySwiper .swiper-slide img, .swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;     /* show entire image */
+  object-position: center; /* center it */
+}
+
+/* Keep your hero rule if you have one */
+@media (max-width: 768px) {
+  .hero-image img {
+    object-fit: contain;
+    object-position: top center;
+    max-height: 50vh;
+  }
+}
 /* Blog Section */
 .blog {
   padding: 40px 12px;
