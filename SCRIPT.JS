@@ -1,3 +1,24 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDnminPGxH05f7DeHlbGNTGAumBssGzkPc",
+  authDomain: "sabeeha-mirza.firebaseapp.com",
+  projectId: "sabeeha-mirza",
+  storageBucket: "sabeeha-mirza.firebasestorage.app",
+  messagingSenderId: "520658257903",
+  appId: "1:520658257903:web:d87af02b830384ac44981a",
+  measurementId: "G-XD7NYHY1SS"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 document.addEventListener("DOMContentLoaded", () => {
   console.log("✅ Sabeeha site loaded");
 
@@ -1084,3 +1105,4 @@ if (swiperEl && typeof Swiper !== 'undefined') {
 
   console.log("✅ All systems initialized");
 });
+
