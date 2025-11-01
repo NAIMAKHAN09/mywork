@@ -7,20 +7,18 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDnminPGxH05f7DeHlbGNTGAumBssGzkPc",
-  authDomain: "sabeeha-mirza.firebaseapp.com",
-  projectId: "sabeeha-mirza",
-  storageBucket: "sabeeha-mirza.firebasestorage.app",
-  messagingSenderId: "520658257903",
-  appId: "1:520658257903:web:d87af02b830384ac44981a",
-  measurementId: "G-XD7NYHY1SS"
+  apiKey: "AIzaSyDzFkeu58O-B8_bdHnHd7ALtHBaBG7F5Wg",
+  authDomain: "portfolio1-78967.firebaseapp.com",
+  projectId: "portfolio1-78967",
+  storageBucket: "portfolio1-78967.firebasestorage.app",
+  messagingSenderId: "752269731295",
+  appId: "1:752269731295:web:4a520b5c1a2f321ec6d06a",
+  measurementId: "G-LGLP76593N"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ Sabeeha site loaded");
 
   // ========================================
   // GENERAL SITE FUNCTIONALITY
@@ -1105,4 +1103,5 @@ if (swiperEl && typeof Swiper !== 'undefined') {
 
   console.log("✅ All systems initialized");
 });
+
 
