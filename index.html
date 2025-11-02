@@ -356,9 +356,63 @@
   const db = getFirestore(app);
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("modal-booking-form");
+  const submitBtn = document.getElementById("modal-submit");
+  const successMsg = document.querySelector(".booking-success");
+  const formDialog = document.querySelector(".modal-form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.querySelector(".btn-text").style.display = "none";
+    submitBtn.querySelector(".btn-loading").style.display = "inline-flex";
+
+    // ✳️ Your Google Script Web App URL goes HERE
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyPCuswldsHLsteeh-RV88sI9uvt7_61UZWtQnaEb12I4ur2K8NmX4HFXMx4geF5e580g/exec";
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      service: form.service.value,
+      date: form.date.value,
+      message: form.message.value
+    };
+
+    try {
+      await fetch(scriptURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(data)
+      });
+
+      formDialog.style.display = "none";
+      successMsg.style.display = "block";
+      form.reset();
+
+    } catch (error) {
+      alert("❌ Something went wrong, please try again later.");
+      console.error(error);
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.querySelector(".btn-text").style.display = "inline";
+    submitBtn.querySelector(".btn-loading").style.display = "none";
+  });
+
+  document.querySelector(".another-booking-btn").addEventListener("click", () => {
+    successMsg.style.display = "none";
+    formDialog.style.display = "block";
+  });
+});
+</script>
 
   <script src="SCRIPT.JS"></script>
 </body>
 </html>
+
 
 
