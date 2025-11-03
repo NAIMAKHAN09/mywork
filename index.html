@@ -337,12 +337,26 @@
     <p>WhatsApp:9879991054</p>
   </section>
   <script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbyjk4HbTj1TzKWODHnA8NItX0mVrvp6vK-R7s_wo7nZJKXu4CsIUdbNkXl2nzJ3yn0Eog/exec";
-</script>
+    <script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbyjk4HbTj1TzKWODHnA8NItX0mVrvp6vK-R7s_wo7nZJKXu4CsIUdbNkXl2nzJ3yn0Eog/exec";
+const msg = document.getElementById("msg")
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => {
+      msg.innerHTML = "Message sent successfully!"
+      setTimeout(() => msg.innerHTML = "", 5000)
+      form.reset()
+    })
+    .catch(error => console.error('Error!', error.message))
+})
+
 
  <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
