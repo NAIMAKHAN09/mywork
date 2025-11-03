@@ -64,7 +64,8 @@
       <p>Fill in your details and we'll get back to you within 24 hours</p>
     </div>
     
-    <form id="modal-booking-form" class="modal-form">
+   <form id="modal-booking-form" class="modal-form" name="submit-to-google-sheet">
+
       <!-- Name Field -->
       <div class="form-field">
         <label for="modal-name">Full Name *</label>
@@ -336,26 +337,26 @@
     <p>Email: mirza.sabeeha@gmail.com </p>
     <p>WhatsApp:9879991054</p>
   </section>
-  <script>
-    <script>
+<script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbyjk4HbTj1TzKWODHnA8NItX0mVrvp6vK-R7s_wo7nZJKXu4CsIUdbNkXl2nzJ3yn0Eog/exec";
-const msg = document.getElementById("msg")
+const form = document.forms['submit-to-google-sheet'];
+const msg = document.getElementById("msg");
 
 form.addEventListener('submit', e => {
-  e.preventDefault()
+  e.preventDefault();
   fetch(scriptURL, { method: 'POST', body: new FormData(form)})
     .then(response => {
-      msg.innerHTML = "Message sent successfully!"
-      setTimeout(() => msg.innerHTML = "", 5000)
-      form.reset()
+      msg.innerHTML = "Message sent successfully!";
+      setTimeout(() => msg.innerHTML = "", 5000);
+      form.reset();
     })
-    .catch(error => console.error('Error!', error.message))
-})
-
-
- <script src="script.js"></script>
+    .catch(error => console.error('Error!', error.message));
+});
+</script>
+<script src="script.js"></script>
 </body>
 </html>
+
 
 
 
