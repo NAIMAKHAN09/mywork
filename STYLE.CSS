@@ -1252,6 +1252,35 @@ header.sticky {
   margin-bottom: 8px;
 }
 
+/* In-article diagram images (e.g. Kolb's Learning Cycle in blog 14) */
+.article-body .kolb-image {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.article-body .kolb-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.article-body .image-caption {
+  margin: 12px auto 0;
+  max-width: 600px;
+  color: #718096;
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .article-body .kolb-image {
+    margin: 20px 0;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .article-modal {
