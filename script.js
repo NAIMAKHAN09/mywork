@@ -1,5 +1,4 @@
-
-  // ========================================
+// ========================================
   // GENERAL SITE FUNCTIONALITY
   // ========================================
 
@@ -360,6 +359,7 @@ if (heroBookBtn && bookingModal) {
   }
 
   // Form submission
+  if (modalForm) {
   modalForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -442,6 +442,7 @@ if (heroBookBtn && bookingModal) {
       btnLoading.style.display = 'none';
     }
   });
+  }
 
   // Book another session
   if (anotherBookingBtn) {
@@ -919,7 +920,7 @@ if (swiperEl && typeof Swiper !== 'undefined') {
     'article-7': {
   title: "The Power of Atomic Habits",
   tag: "Soft Skills",
-  date: "15th march 2026",
+  date: "Mar 12, 2026",
   readTime: "5 min read",
   content: `
     <h1>The Power of Atomic Habits</h1>
@@ -951,8 +952,8 @@ if (swiperEl && typeof Swiper !== 'undefined') {
 
     'article-8': {
       title: "10 Powerful Presentation Skills Tips to Boost Confidence Instantly",
-      tag: "Soft Skills",
-      date: "9th april 2026",
+      tag: "Communication",
+      date: "Apr 9, 2026",
       readTime: "8 min read",
       image: "client images/presentation-skills.jpg",
       content: `
@@ -1093,8 +1094,8 @@ if (swiperEl && typeof Swiper !== 'undefined') {
     
     'article-9': {
       title: "Communication Skills Training for Professionals: A Complete Guide",
-      tag: "Communication",
-      date: "9th april 2026",
+      tag: "Soft Skills",
+      date: "Apr 9, 2026",
       readTime: "8 min read",
       image: "client images/communication-training.jpg",
       content: `
@@ -1216,7 +1217,7 @@ if (swiperEl && typeof Swiper !== 'undefined') {
     'article-10': {
       title: "How to Overcome Stage Fear: Practical Techniques That Actually Work",
       tag: "Soft Skills",
-      date: "9th april 2026",
+      date: "Apr 9, 2026",
       readTime: "7 min read",
       image: "client images/stage-fear.jpg",
       content: `
@@ -1344,7 +1345,7 @@ if (swiperEl && typeof Swiper !== 'undefined') {
        'article-11': {
 title: "Top 7 Communication Skills Every Employee Must Have in 2026",
 tag: "Communication",
-date: "28th April 2026",
+date: "Apr 28, 2026",
 readTime: "6 min read",
 image: "client images/Top 7 Communication Skills.jpg",
 
@@ -1439,7 +1440,7 @@ content: `
 'article-12': {
 title: "How Corporate Training Improves Employee Performance and Business ROI",
 tag: "Communication",
-date: "30th April 2026",
+date: "Apr 30, 2026",
 readTime: "5 min read",
 image: "client images/ROI.jpg",
 
@@ -1527,7 +1528,7 @@ content: `
 'article-13': {
 title: "How to Choose the Best Corporate Trainer in Ahmedabad",
 tag: "Communication",
-date: "2nd May 2026",
+date: "May 2, 2026",
 readTime: "6 min read",
 image: "client images/Trainer.jpg",
 
@@ -1613,7 +1614,7 @@ content: `
 'article-14': {
   title: "Can Communication Skills Be Taught Through Gamification?",
   tag: "Communication",
-  date: "5th May 2026",
+  date: "May 5, 2026",
   readTime: "7 min read",
   image: "client images/Gamification.jpg",
 
@@ -1767,138 +1768,11 @@ content: `
     </p>
 
   `
-},
-     'article-15': {
-  title: "Managerial Development Programs: Why Every Industry Needs Strong Leaders",
-  tag: "Leadership",
-  date: "8th May 2026",
-  readTime: "7 min read",
-  image: "client images/Managerial Development.jpg",
-
-  content: `
-
-    <p>
-      In today's dynamic business environment, organisations thrive because of
-      effective leadership. As industries evolve through digital transformation,
-      global competition and changing workforce expectations, competent managers
-      have become essential.
-    </p>
-
-    <p>
-      <strong>Managerial Development Programs (MDPs)</strong> equip managers with
-      leadership, communication, decision-making and people management skills
-      required to drive organisational success.
-    </p>
-
-    <h3>What is a Managerial Development Program?</h3>
-
-    <p>
-      A Managerial Development Program (MDP) is a structured learning initiative
-      aimed at enhancing the knowledge, skills and competencies of current and
-      future managers.
-    </p>
-
-    <p>
-      Unlike technical training, MDPs focus on behavioural, strategic and
-      leadership capabilities that enable managers to lead teams effectively and
-      deliver business results.
-    </p>
-
-    <h3>Why Are Managerial Development Programs Important?</h3>
-
-    <p>
-      Today's managers are expected to do much more than supervise teams. They
-      must inspire employees, manage change, resolve conflicts, communicate
-      effectively and make informed decisions.
-    </p>
-
-    <p>
-      Effective managerial development programmes help organisations:
-    </p>
-
-    <ul>
-      <li>Develop confident leaders.</li>
-      <li>Improve employee engagement.</li>
-      <li>Increase productivity.</li>
-      <li>Build a strong leadership pipeline.</li>
-      <li>Encourage innovation.</li>
-      <li>Strengthen organisational culture.</li>
-    </ul>
-
-    <h3>The Need Across Industries</h3>
-
-    <ul>
-      <li><strong>Manufacturing:</strong> Operational excellence, quality, safety and team leadership.</li>
-
-      <li><strong>Banking & Financial Services:</strong> Customer service, compliance, risk management and digital transformation.</li>
-
-      <li><strong>Information Technology:</strong> Agile leadership, project management, innovation and hybrid teams.</li>
-
-      <li><strong>Healthcare:</strong> Patient-centric leadership, communication, crisis management and planning.</li>
-
-      <li><strong>Education:</strong> Faculty leadership, student engagement and institutional growth.</li>
-
-      <li><strong>Retail & E-commerce:</strong> Customer experience, sales leadership and inventory management.</li>
-
-      <li><strong>Hospitality & Tourism:</strong> Service excellence, guest relations and operational efficiency.</li>
-
-      <li><strong>Pharmaceuticals:</strong> Compliance, ethics, innovation and collaboration.</li>
-
-      <li><strong>Logistics & Supply Chain:</strong> Strategic planning, vendor management and operational agility.</li>
-
-      <li><strong>Government & Public Sector:</strong> Governance, ethics and citizen engagement.</li>
-
-      <li><strong>Startups & SMEs:</strong> Decision-making, innovation, scaling and resource management.</li>
-
-    </ul>
-
-    <h3>Core Competencies Developed</h3>
-
-    <ul>
-      <li>Leadership & Executive Presence</li>
-      <li>Strategic Thinking</li>
-      <li>Communication Skills</li>
-      <li>Emotional Intelligence</li>
-      <li>Conflict Resolution</li>
-      <li>Coaching & Mentoring</li>
-      <li>Performance Management</li>
-      <li>Change Management</li>
-      <li>Team Building</li>
-      <li>Customer-Centric Leadership</li>
-      <li>AI for Managers</li>
-    </ul>
-
-    <h3>The Future of Leadership Development</h3>
-
-    <p>
-      Organisations that invest in managerial development create resilient teams,
-      improve employee satisfaction and gain a sustainable competitive advantage.
-    </p>
-
-    <p>
-      In today's rapidly changing business landscape,
-      <strong>Managerial Development Programs are no longer optional—they are a strategic necessity.</strong>
-    </p>
-
-    <h3>Partner with Sabeeha Mirza</h3>
-
-    <p>
-      Sabeeha Mirza designs highly interactive Managerial Development Programs
-      using experiential learning, simulations, case studies, role plays,
-      gamification and practical workplace scenarios.
-    </p>
-
-    <p>
-      Every programme is customised to meet organisational needs and deliver
-      measurable business impact.
-    </p>
-
-  `
 }
 
 };
      
- 
+  
 
   // Get modal DOM elements
   const modalOverlay = document.getElementById("modal-overlay");
@@ -2052,7 +1926,7 @@ content: `
         
         // Filter cards
         blogCards.forEach(card => {
-          const cardTag = card.querySelector(".tag")?.textContent.toLowerCase();
+          const cardTag = card.querySelector(".tag")?.textContent.trim().toLowerCase();
           
           if (category === "all topics" || cardTag?.includes(category.split(" ")[0])) {
             card.style.display = "";
