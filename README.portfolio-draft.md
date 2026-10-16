@@ -1,24 +1,21 @@
 # Sabeeha Mirza — Portfolio & Blog Website
 
-A web development project for a corporate trainer, soft-skills trainer, and communication professional.
-
-The website presents professional services, client-facing information, a blog, and booking-related interactions.
+A client-oriented website for Sabeeha Mirza, a corporate trainer, soft-skills trainer, and communication professional. The site presents professional services, client-facing information, blog content, and booking-related interface elements.
 
 ## Live Website
 
-[View the website](https://naimakhan09.github.io/mywork/)
+[Open the website](https://naimakhan09.github.io/mywork/)
 
-## Features
+## Site Sections and Interface
 
-- Responsive navigation
-- Homepage and service sections
-- Client-facing portfolio content
-- Blog listing with categories
-- Article read-more interactions
-- Booking form interface
+- Homepage and professional introduction
+- Services and client-facing content
+- Blog listing with topic labels and article cards
+- Mobile navigation
+- Booking modal and form interface
 - Downloadable portfolio link
 
-Feature availability and all form-submission integrations should be checked against the deployed site before this list is treated as a verified functional specification.
+The repository contains the form and interaction code. Verify the live deployment, download target, article interactions, and any external form-submission integration before treating them as fully functional.
 
 ## Technology Stack
 
@@ -27,37 +24,35 @@ Feature availability and all form-submission integrations should be checked agai
 - JavaScript
 - Swiper.js
 
-## Project Structure
+## Key Files
 
-- `index.html` — main landing page
+- `index.html` — homepage and booking interface
 - `blog.html` — blog listing and article cards
-- `STYLE.CSS` — shared styling
-- `script.js` — interactive behavior
-- `client images/` — website image assets
+- `STYLE.CSS` — site styling
+- `script.js` — navigation, modal, and interaction logic
+- `client images/` — client website image assets
 
 ## Run Locally
-
-Clone the repository:
 
 ```bash
 git clone https://github.com/NAIMAKHAN09/mywork.git
 cd mywork
 ```
 
-Open `index.html` in a browser or use a local static web server.
+Open `index.html` in a browser, or serve the directory using a local static web server.
 
-## Development Notes
+## Maintenance Notes
 
-- Preserve client content and assets when making changes.
-- Verify image paths and downloadable files before deployment.
-- Test mobile navigation and blog interactions.
-- Confirm booking form integrations and privacy-related links.
-- Optimize large image assets where appropriate.
+- Preserve the client's content and assets when making changes.
+- Check image and downloadable-file paths after deployment.
+- Test mobile navigation, blog interactions, and booking form validation.
+- Confirm how form submissions are handled before collecting real user information.
+- Optimize image sizes and check layout behavior on mobile screens.
 
 ## Project Context
 
-This repository demonstrates a client-oriented web development project, distinct from the author's personal engineering portfolio.
+This is a client web-development project, separate from the author's personal engineering portfolio. Any reuse of client content, images, or branding should be approved by the rights holder.
 
 ## License
 
-This project contains client-specific material. Confirm ownership and redistribution permissions before adding an open-source license or reusing assets elsewhere.
+No open-source license is specified here. Confirm ownership and redistribution permissions before adding a license or reusing client assets.
